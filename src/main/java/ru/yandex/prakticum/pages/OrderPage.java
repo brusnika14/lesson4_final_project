@@ -12,20 +12,28 @@ import ru.yandex.prakticum.models.User;
 
 public class OrderPage {
     private final WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriverWait wait;
     private final User user;
     private final String station;
+
     public OrderPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, BaseConfiguration.IMPLICIT_WAIT);
         user = OrderPageConfiguration.getRandomUser();
         station = OrderPageConfiguration.getStation();
     }
+    public void clickStatus() {
+        WebElement statusButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//button[contains(@class, 'Button_Button__ra12g Button_Middle__1CSJM') and contains(text(), 'Посмотреть статус')]")
+        ));
+        statusButton.click();
+
+    }
 
 
     public void clickYesButton() {
         WebElement yesButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//button[contains(@class, 'Button_Middle__1CSJM') and contains(text(), 'Да')]")
+                By.xpath("//button[contains(@class, 'Button_Button__ra12g Button_Middle__1CSJM') and contains(text(), 'Да')]")
         ));
         yesButton.click();
     }
@@ -92,10 +100,15 @@ public class OrderPage {
 
     public void choiceMetro() {
         // Выбор станции из списка
-        WebElement station = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//li[@class='select-search__row']//button[contains(.,'Лубянка')]")
-        ));
-        station.click();
+
+        WebElement stationElement = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath(
+                        String.format(
+                                "//li[@class='select-search__row']//button[contains(.,'%s')]",
+                                station
+                        )
+        )));
+        stationElement.click();
     }
 
     public void clickMetro() {
