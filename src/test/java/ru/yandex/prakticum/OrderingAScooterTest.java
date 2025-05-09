@@ -29,7 +29,7 @@ public class OrderingAScooterTest extends BaseTest {
     }
 
     @Test
-    public void openPage() throws InterruptedException {
+    public void openPage() {
         checkOrderButton();
         orderPage.fillInTheNameField();
         orderPage.fillInLastNameField();
