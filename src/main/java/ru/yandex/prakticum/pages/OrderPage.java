@@ -22,6 +22,14 @@ public class OrderPage {
         user = OrderPageConfiguration.getRandomUser();
         station = OrderPageConfiguration.getStation();
     }
+
+    public String getOrderStatusText() {
+        WebElement webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.className("Track_Order__1S6E9")
+        ));
+        return webElement.getText();
+    }
+
     public void clickStatus() {
         WebElement statusButton = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//button[contains(@class, 'Button_Button__ra12g Button_Middle__1CSJM') and contains(text(), 'Посмотреть статус')]")

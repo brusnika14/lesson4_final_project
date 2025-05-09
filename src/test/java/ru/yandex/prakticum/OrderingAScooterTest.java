@@ -17,9 +17,20 @@ public class OrderingAScooterTest extends BaseTest {
     }
 
     @Test
-    public void openPage() {
+    public void checkOrderButton() {
         mainPage.openPage();
         mainPage.clickOnOrder();
+    }
+
+    @Test
+    public void checkOrderButton2() {
+        mainPage.openPage();
+        mainPage.clickOnOrder2();
+    }
+
+    @Test
+    public void openPage() throws InterruptedException {
+        checkOrderButton();
         orderPage.fillInTheNameField();
         orderPage.fillInLastNameField();
         orderPage.fillInAddressField();
@@ -36,5 +47,8 @@ public class OrderingAScooterTest extends BaseTest {
         orderPage.clickOrderButton();
         orderPage.clickYesButton();
         orderPage.clickStatus();
+        assert (
+                orderPage.getOrderStatusText().equals("Самокат на складе")
+        );
     }
 }

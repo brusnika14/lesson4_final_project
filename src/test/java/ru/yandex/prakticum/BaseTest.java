@@ -6,15 +6,13 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.yandex.prakticum.pages.MainPage;
-import ru.yandex.prakticum.pages.OrderPage;
 
 public abstract class BaseTest {
     protected WebDriver driver;
     @Before
     public void setUp() {
         // Получаем значение браузера из системной переменной (по умолчанию chrome)
-        String browserName = System.getProperty("browser", "chrome").toLowerCase();
+        String browserName = System.getProperty("browser", "firefox").toLowerCase();
 
         // Инициализируем соответствующий драйвер
         switch (browserName) {
